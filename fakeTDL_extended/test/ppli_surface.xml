@@ -1,0 +1,13 @@
+<fakeTDL>
+  <ppli_surface>
+    <unit_id>SP456</unit_id>
+    <type>SHIPXXXX</type>
+    <lat>36.123</lat>
+    <lon>-5.987</lon>
+    <course>090</course>
+    <speed>25</speed>
+    <status>OPERATIONALX</status>
+    <fuel_state>MEDIUMXX</fuel_state>
+    <link_status>OKXXXXXX</link_status>
+  </ppli_surface>
+</fakeTDL>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fakeTDL>
+  <ppli>
+    <unit_id>SP123</unit_id>
+    <type>FIGHTER</type>
+    <lat>41.123</lat>
+    <lon>-3.456</lon>
+    <alt>12000</alt>
+    <speed>450</speed>
+    <heading>270</heading>
+    <status>OPERATIONAL</status>
+    <fuel_state>MEDIUM</fuel_state>
+    <link_status>OK</link_status>
+  </ppli>
+</fakeTDL>
