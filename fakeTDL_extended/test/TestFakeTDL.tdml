@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-TDML is a convenient way to package tests of DFDL schemas and test data
 
-There are a few extra namespace prefix definitions here that aren't used yet,
-but they are commonly needed so we have them here for future convenience.
--->
 <testSuite
   xmlns="http://www.ibm.com/xmlns/dfdl/testData"
   xmlns:tdml="http://www.ibm.com/xmlns/dfdl/testData"
@@ -15,16 +10,11 @@ but they are commonly needed so we have them here for future convenience.
   defaultRoundTrip="onePass"
   defaultValidation="limited">
 
-  <!--
-  This is a positive parser test case.
-  It combines together a file of input data to parse (called 'document' in TDML)
-  along with an expected infoset of XML that is the expected parse output.
+<!-- 
+Utiliza un .dat y espera un .xml, 
+después realiza el unparse y compara que el binario generado sea igual al original
+-->
 
-  Above you see defaultRoundTrip="onePass". That means that besides doing the parse
-  and verifying the expected XML, the test will then unparse the XML to see if
-  the output from the unparse is identical to the original data document.
-  Both directions, parse and unparse, must succeed for the test to pass.
-  -->
   <parserTestCase name="test_track_good_01" root="fakeTDL" model="fakeTDL.dfdl.xsd">
     <document>
       <documentPart type="file">test_track_good_01.dat</documentPart>
@@ -34,14 +24,7 @@ but they are commonly needed so we have them here for future convenience.
     </infoset>
   </parserTestCase>
 
-  <!--
-  This is the same test as the one above, just with the data embedded here
-  directly as hex text, and with the expected infoset expressed directly in
-  this file as well.
 
-  These sort of self-contained tests where the data is just embedded in the TDML
-  file can be very convenient.
-  -->
   <parserTestCase name="test_track_good_02" root="fakeTDL" model="fakeTDL.dfdl.xsd">
     <document>
       <documentPart type="byte">
@@ -77,11 +60,7 @@ but they are commonly needed so we have them here for future convenience.
     </infoset>
   </parserTestCase>
 
-  <!--
- This is a negative test similar to the one above
- but detecting that the data, while well-formed, has an invalid value for the
- <course>587</course> element which is supposed to be an angle 0 to 359.
- -->
+
   <parserTestCase name="test_track_invalid_01" root="fakeTDL" model="fakeTDL.dfdl.xsd">
     <document>
       <documentPart type="byte">
@@ -126,14 +105,6 @@ but they are commonly needed so we have them here for future convenience.
 
 
 
-  <!--
-  This is a negative parser test case.
-
-  It differs from the above positive parser test case by not having an
-  expected infoset at all. Instead it contains error strings. These strings
-  must be found in the diagnostic error messages from the parse in order for the
-  test to pass. (The string comparison to find the error strings is case-insensitive.)
-  -->
   <parserTestCase name="test_track_bad_01" root="fakeTDL" model="fakeTDL.dfdl.xsd">
     <document>
       <documentPart type="file">test_track_bad_01.dat</documentPart>
@@ -144,19 +115,8 @@ but they are commonly needed so we have them here for future convenience.
     </errors>
   </parserTestCase>
 
-  <!--
-  This is a negative unparser test case.
 
-  Above we saw that parserTestCase run with round trip "onePass" tests both parsing
-  and unparsing for positive test cases. So we don't need to create both parserTestCase
-  and unparserTestCase for positive tests.
 
-  To ensure errors are detected by the unparser, we need separate negative
-  unparser test cases.
-
-  The input is an XML infoset. The expected error strings must be found (case
-  insensitive matching) in the diagnostic error messages from the unparser.
-  -->
   <unparserTestCase name="test_track_bad_02" root="fakeTDL" model="fakeTDL.dfdl.xsd">
     <infoset>
       <dfdlInfoset type="file">test_track_bad_02.xml</dfdlInfoset>
@@ -168,12 +128,10 @@ but they are commonly needed so we have them here for future convenience.
     </errors>
   </unparserTestCase>
 
+
   <parserTestCase name="test_track_invalid_02" root="fakeTDL" model="fakeTDL.dfdl.xsd">
     <document>
-      <!--
-      Almost every field in the data below has a
-      well-formed, but invalid value.
-      -->
+      
       <documentPart type="byte">
         5441 4731 325A 0102 0300 0000 0001 446B
         4000 C472 8000 FC17 5859 5A5A 5901 0201
@@ -263,6 +221,7 @@ but they are commonly needed so we have them here for future convenience.
     </infoset>
   </parserTestCase>
 
+
   <parserTestCase name="test_ack_01" root="fakeTDL" model="fakeTDL.dfdl.xsd">
     <document>
       <documentPart type="byte">
@@ -290,22 +249,7 @@ but they are commonly needed so we have them here for future convenience.
   </parserTestCase>
 
 
-  <!--
- This is a negative test. It has a track message, but the
- sendTime field, which is supposed to be BCD contains ABCDEF
- which cannot be converted to a xs:time type value.
-
- This test illustrates the importance of dfdl:initiatedContent="yes"
- where the initiator behaves as a DFDL discriminator. If you change
- dfdl:initatedContent to "no", the diagnostic information talks about
- initiators 'A' and 'D' not being found, and "all choice branches" failing
- which is confusing because the message is clearly a track message with initiator 'T'.
-
- If dfdl:initiatedContent="yes", finding the initiator discriminates the
- choice - no attempts will be made to try the identity nor ack choice branches
- once the 'T' is found even if the track branch fails. The diagnostic
- messages will be all about the sendTime field of a track message being malformed.
- -->
+ 
   <parserTestCase name="test_malformed_bcd_01" root="fakeTDL" model="fakeTDL.dfdl.xsd">
     <document>
       <documentPart type="byte">
