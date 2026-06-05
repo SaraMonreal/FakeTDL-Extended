@@ -15,7 +15,7 @@ Utiliza un .dat y espera un .xml,
 después realiza el unparse y compara que el binario generado sea igual al original
 -->
 
-  <parserTestCase name="test_track_good_01" root="fakeTDL" model="fakeTDL.dfdl.xsd">
+  <parserTestCase name="test_track_good_01" root="fakeTDL" model="../src/fakeTDL.dfdl.xsd">
     <document>
       <documentPart type="file">test_track_good_01.dat</documentPart>
     </document>
