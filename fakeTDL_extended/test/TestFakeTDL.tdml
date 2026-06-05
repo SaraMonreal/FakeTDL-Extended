@@ -61,7 +61,7 @@ después realiza el unparse y compara que el binario generado sea igual al origi
   </parserTestCase>
 
 
-  <parserTestCase name="test_track_invalid_01" root="fakeTDL" model="../src/fakeTDL.dfdl.xsd"">
+  <parserTestCase name="test_track_invalid_01" root="fakeTDL" model="../src/fakeTDL.dfdl.xsd">
     <document>
       <documentPart type="byte">
         5441 4731 3233 0102 0300 0000 0001 4224
