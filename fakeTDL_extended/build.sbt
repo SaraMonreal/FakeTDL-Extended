@@ -1,4 +1,4 @@
-name := "fakeTDL-lab05"
+name := "fakeTDL-Extended"
 
 organization := "com.owlcyberdefense"
 
